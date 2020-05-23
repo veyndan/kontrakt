@@ -5,6 +5,12 @@ plugins {
 group 'com.veyndan.porn'
 version '1.0-SNAPSHOT'
 
+test {
+    useJUnitPlatform {
+        includeEngines 'spek2'
+    }
+}
+
 compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
 }
@@ -14,9 +20,19 @@ compileTestKotlin {
 }
 
 repositories {
+    jcenter()
+    maven { url 'https://dl.bintray.com/kotlin/exposed' }
+    maven { url 'http://kotlin.bintray.com/ktor' }
     mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.spekframework.spek2:spek-dsl-jvm:2.0.10'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    implementation 'org.spekframework.spek2:spek-runner-junit5:2.0.10'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-test-junit5:1.3.71'
 }
